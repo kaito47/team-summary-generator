@@ -11,65 +11,73 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const allEmployees = [];
 
-// Write code to use inquirer to gather information about the development team members, 
 
-// Using inquirer prompts to gather manager information
-function managerInformation() {
-    return inquirer.prompt([
+// Write code to use inquirer to gather information about the development team members, 
+teamInformation()
+
+
+
+// Using inquirer prompts to gather team information, starting with the manager
+function teamInformation() {
+    inquirer.prompt([
         {
             type: "input",
-            name: "managerName",
+            name: "name",
             message: "What is the full name of the manager?"
 
         },
 
         {
             type: "input",
-            name: "managerId",
-            message: "What is the manager'd id number?"
+            name: "id",
+            message: "What is the manager's id number?"
 
         },
 
         {
             type: "input",
-            name: "managerEmail",
+            name: "email",
             message: "What is the manager's email address?"
         },
 
         {
             type: "input",
             name: "officeNumber",
-            message: "What is the manager's office number? (Include area code)"
+            message: "What is the manager's office number? (Include area code)",
         },
+
     ]).then(answers => {
         const manager = new Manager(
-            "answers.managerName",
-            "answers.managerId",
-            "answers.managerEmail",
-            "answers.officeNumber")
-    },
-        allEmployees.push(manager));
-}
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.officeNumber)
+
+        allEmployees.push(manager);
+        engineerInformation()
+    })
+};
+
 
 // Using inquirer prompts to gather engineer information
 function engineerInformation() {
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: "input",
-            name: "engineerName",
+            name: "name",
             message: "What is the engineer's full name?",
         },
 
         {
             type: "input",
-            name: "engineerId",
+            name: "id",
             message: "What is the engineer's id number?",
 
         },
 
         {
             type: "input",
-            name: "engineerEmail",
+            name: "email",
             message: "What is the engineer's email?",
         },
 
@@ -78,30 +86,48 @@ function engineerInformation() {
             name: "github",
             message: "What is the engineer's github name?",
         },
+        {
+            type: "confirm",
+            name: "addEngineer",
+            message: "Would you like to add another engineer to the team roster?"
+        }
 
     ]).then(answers => {
         const engineer = new Engineer(
-            "answers.engineerName",
-            "answers.engineerId",
-            "answers.engineerEmail",
-            "answers.github")
-    },
-        allEmployees.push(engineer));
-}
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.github)
 
+        allEmployees.push(engineer);
+        answers.addEngineer ? (
+            engineerInformation()
+        ) :
+            (
+                internInformation())
+
+    }
+    )
+};
 // Using inquirer to gather intern information
 
 function internInformation() {
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: "input",
-            name: "internName",
+            name: "name",
             message: "What is the intern's name?",
         },
 
         {
             type: "input",
-            name: "internEmail",
+            name: "id",
+            message: "What is the intern's id?"
+        },
+
+        {
+            type: "input",
+            name: "email",
             message: "What is the intern's email address?",
         },
 
@@ -110,14 +136,39 @@ function internInformation() {
             name: "school",
             message: "What school does the intern attend?",
         },
+
+        {
+            type: "confirm",
+            name: "addIntern",
+            message: "Would you like to add another intern to the team roster?"
+        },
+
     ]).then(answers => {
         const intern = new Intern(
-            "answers.internName",
-            "answers.internEmail",
-            "answers.school"),
-    },
-        allEmployees.push(intern));
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.school,
+        )
+
+        allEmployees.push(intern)
+        answers.addIntern ? (
+            internInformation()
+        ) :
+            (
+                console.log(`Your team roster is complete: ${JSON.stringify(allEmployees)}`));
+
+    }
+    )
+    render(allEmployees)
 }
+
+
+
+
+
+
+
 
 
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -141,4 +192,4 @@ function internInformation() {
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+// for the provided `render` function to work! ``
