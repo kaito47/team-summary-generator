@@ -9,12 +9,121 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const allEmployees = [];
+
+// Write code to use inquirer to gather information about the development team members, 
+
+// Using inquirer prompts to gather manager information
+function managerInformation() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "managerName",
+            message: "What is the full name of the manager?"
+
+        },
+
+        {
+            type: "input",
+            name: "managerId",
+            message: "What is the manager'd id number?"
+
+        },
+
+        {
+            type: "input",
+            name: "managerEmail",
+            message: "What is the manager's email address?"
+        },
+
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is the manager's office number? (Include area code)"
+        },
+    ]).then(answers => {
+        const manager = new Manager(
+            "answers.managerName",
+            "answers.managerId",
+            "answers.managerEmail",
+            "answers.officeNumber")
+    },
+        allEmployees.push(manager));
+}
+
+// Using inquirer prompts to gather engineer information
+function engineerInformation() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is the engineer's full name?",
+        },
+
+        {
+            type: "input",
+            name: "engineerId",
+            message: "What is the engineer's id number?",
+
+        },
+
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is the engineer's email?",
+        },
+
+        {
+            type: "input",
+            name: "github",
+            message: "What is the engineer's github name?",
+        },
+
+    ]).then(answers => {
+        const engineer = new Engineer(
+            "answers.engineerName",
+            "answers.engineerId",
+            "answers.engineerEmail",
+            "answers.github")
+    },
+        allEmployees.push(engineer));
+}
+
+// Using inquirer to gather intern information
+
+function internInformation() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the intern's name?",
+        },
+
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is the intern's email address?",
+        },
+
+        {
+            type: "input",
+            name: "school",
+            message: "What school does the intern attend?",
+        },
+    ]).then(answers => {
+        const intern = new Intern(
+            "answers.internName",
+            "answers.internEmail",
+            "answers.school"),
+    },
+        allEmployees.push(intern));
+}
 
 
-// Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
+
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
