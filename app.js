@@ -13,12 +13,12 @@ const allEmployees = [];
 
 
 // Write code to use inquirer to gather information about the development team members, 
-teamInformation()
+managerInformation();
 
 
 
 // Using inquirer prompts to gather team information, starting with the manager
-function teamInformation() {
+function managerInformation() {
     inquirer.prompt([
         {
             type: "input",
@@ -156,11 +156,13 @@ function internInformation() {
             internInformation()
         ) :
             (
-                console.log(`Your team roster is complete: ${JSON.stringify(allEmployees)}`));
-
+                console.log('Your team roster is complete!'));
+        const teamPage = render(allEmployees);
+        fs.mkdirSync('output');
+        fs.writeFileSync(outputPath, teamPage);
     }
     )
-    render(allEmployees)
+
 }
 
 
