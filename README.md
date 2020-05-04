@@ -7,6 +7,8 @@ This application creates a web development team roster using a node CLI to gener
 
 This application was made using: HTML, CSS, Javascript, npm packages (Inquirer, Jest). 
 
+![example]"https://github.com/kaito47/team-summary-generator/blob/master/assets/tsg.png"
+
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
@@ -31,10 +33,6 @@ In order to contribute to this application: Nothing.
 ## Tests
 
 In order to run tests for this application, use the command npm run test.
-
-## Link
-
-
 
 ----
 To leave comments or questions about this application, email me at: oshaughnessykm@gmail.com.
