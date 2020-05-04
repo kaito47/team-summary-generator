@@ -1,0 +1,47 @@
+* {
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+#jumbo {
+    max-height: 12em;
+    background-color: cornsilk;
+    opacity: 90%;
+}
+
+h1 {
+    margin-bottom: 2%;
+    font-family: 'Kanit', sans-serif;
+    font-size: 4em;
+    padding: 0;
+    color: black;
+    opacity: 100%;
+}
+
+body {
+    background-image: url("https://c1.wallpaperflare.com/preview/4/87/593/soap-bubble-black-and-white-huge-large.jpg");
+    height: 100%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom 1%;
+    background-size: 100%;
+}
+
+.card {
+    max-width: 25%;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+.card-header {
+    line-height: 20%;
+    background-color: whitesmoke;
+}
+
+#container {
+    margin-bottom: 5%;
+}
